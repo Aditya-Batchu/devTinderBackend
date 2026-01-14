@@ -93,3 +93,10 @@
   Example: /(?<=$)\d+/ matches digits preceded by $
 
   Flags: i (ignore case), g (global), m (multiline), s (dotAll), u (unicode), y (sticky)
+
+# Middleware
+  - Whenever a api call is made it goes through the chain of functions(middlewares) untill it reaches a function(Request-handler) which sends back the response.
+  - There can be many middlewares.
+  - There can also be many route handlers but only a single route hanlder handles the request for a particular route
+  - Use cases
+    - Middlewares used to check whether the api call is made by authorised user or not.

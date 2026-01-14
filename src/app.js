@@ -2,41 +2,27 @@ const express = require("express");
 
 const app = express();
 
-// Route and many route handlers
-app.use(
-  "/user",
-  (req, res) => {
-    console.log("Route handler 1!!");
-    res.send("1st request");
-  },
-  (req, res) => {
-    console.log("Route handler 2!!");
-    res.send("2nd request");
-  }
-);
+const {adminAuth, userAuth} = require("./middlewares/auth");
 
-// Only a single response will be sent.
+app.use("/user/login", (req, res) => {
+  res.send("login page");
+});
+
 // Route and many route handlers
-app.use(
-  "/admin",
-  [(req, res, next) => {
-    console.log("Route handler 1!!");
-    next();
-  },
-  (req, res, next) => {
-    console.log("Route handler 2!!");
-    next();
-  }],
-  (req, res, next) => {
-    console.log("Route handler 3!!");
-    next();
-  },
-  (req, res, next) => {
-    console.log("Route handler 4!!");
-    res.send("Final route handler");
-    next();
-  }
-);
+app.use("/user/getData",userAuth, (req, res) => {
+  console.log("Route handler 1!!");
+  res.send("User data");
+});
+
+// app.use("/admin",adminAuth);
+
+app.use("/admin/getAllData",adminAuth,(req,res)=>{
+    res.send("All data is send");
+})
+
+app.use("/admin/deleteUser",adminAuth,(req,res)=>{
+    res.send("Deleted user");
+})
 
 app.get("/", (req, res) => {
   res.send("Home page");

@@ -23,3 +23,7 @@
   - Try route handler and multiple-rote handlers
   - try using next() for multiple route handlers
   - use array of route handlers. app.use("/route",rh1,[rh2,rh3],rh4,rh5)
+  - Explore middleware and how express js handles request behind the scenes.
+  - learn http status code
+  - learn differnece between use and all
+  - Write dummy middlewares for admin,user(except for login)
