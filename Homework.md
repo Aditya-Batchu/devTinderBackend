@@ -19,3 +19,7 @@
   - Play with reular expressions (regex)
   - Explore dynamic routing 
 
+# Episode 05
+  - Try route handler and multiple-rote handlers
+  - try using next() for multiple route handlers
+  - use array of route handlers. app.use("/route",rh1,[rh2,rh3],rh4,rh5)
