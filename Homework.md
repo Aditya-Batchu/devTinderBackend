@@ -16,4 +16,6 @@
   - Play with routes and route extensions
   - installing postman and create workspace/collection/request
   - Write logic for GET,POST,PATCH,DELETE and test in postman
-  
+  - Play with reular expressions (regex)
+  - Explore dynamic routing 
+

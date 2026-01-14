@@ -2,35 +2,35 @@ const express = require("express");
 
 const app = express();
 
-// These kind of routes will match only get request
-app.get("/user",(req,res)=>{
-  res.send({firstName:"Adhitya",lastName:"Batchu"});
-})
+// ? --> Ex: b? — b with ? quantifier: b is optional (0 or 1 occurrences).
+app.get(/ab?c/, (req, res) => {
+  res.send("? Optional chaining Ex: /ab?c/");
+});
 
-// These kind of routes will match only post request
-app.post("/user",(req,res)=>{
-  // saving user data code
-  console.log("Saving user data to the database");
-  res.send("saved user data");
-})
+// . --> Ex: . — any single character except newline Example: /a.c/ matches "abc", "a-c"
+app.get(/ab.c/, (req, res) => {
+  res.send(". (dot) matches any character Ex: /ab.c/");
+});
 
-app.patch("/user",(req,res)=>{
-  // Minor updates in user profile code
-  console.log("updated user data");
-  res.send("updated user data");
-})
+// ^ --> Ex: ^ - indicates start of the string Ex: ^a mathces: "abc","asd"
+app.get(/^express$/, (req, res) => {
+  res.send("^ start of the string matches a");
+});
 
-app.delete("/user",(req,res)=>{
-  // update user profile code
-  console.log("deleted user data");
-  res.send("deleted user data");
-})
+// + --> — 1 or more of previous token (greedy) Example: /ab+c/ matches "abc", "abbbc" but not "ac"
+app.get(/ab+c/, (req, res) => {
+  res.send("+ (plus) 1 or more previous tokens Ex: /ab+c/");
+});
 
-// These kind of routes will match all the incoming requests
-app.use("/",(req,res)=>{
-  res.send("Hello from the Dashboard!");
-})
+// * --> — 0 or more of previous token (greedy) Example: /ab*c/ matches "ac", "abc", "abbbc"
+app.get(/goo*gle/, (req, res) => {
+  res.send("* (star) 0 or more previous tokens Ex:/goo*gle/");
+});
 
-app.listen(3000,()=>{
-  console.log("Server is listening at port 3000....")
+app.get("/", (req, res) => {
+  res.send("Home page");
+});
+
+app.listen(3000, () => {
+  console.log("Server is listening at port 3000....");
 });
