@@ -28,3 +28,12 @@
   - learn differnece between use and all
   - Write dummy middlewares for admin,user(except for login)
   - Error handling using app.use
+
+# Episode 07
+  - Create a free cluster in mongodb official website (Mongo Atlas)
+  - install mongoose library
+  - connect application to the database "Connection-url"/devTinder
+  - call the connectDB function and connect to database before starting application on server.
+  - create a user schema & user model
+  - create a POST /signup api to add data to database
+  - push some documents from postman 

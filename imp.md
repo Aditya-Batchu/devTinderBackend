@@ -100,3 +100,12 @@
   - There can also be many route handlers but only a single route hanlder handles the request for a particular route
   - Use cases
     - Middlewares used to check whether the api call is made by authorised user or not.
+
+# Database
+  - instances of Models are documents
+  - 
+
+# Resources
+ - mongoose documentation
+ - libuv documentation
+ - 
