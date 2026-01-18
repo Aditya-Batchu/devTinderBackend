@@ -27,3 +27,4 @@
   - learn http status code
   - learn differnece between use and all
   - Write dummy middlewares for admin,user(except for login)
+  - Error handling using app.use

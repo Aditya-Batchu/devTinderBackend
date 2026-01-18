@@ -2,30 +2,21 @@ const express = require("express");
 
 const app = express();
 
-const {adminAuth, userAuth} = require("./middlewares/auth");
+const { adminAuth, userAuth } = require("./middlewares/auth");
 
-app.use("/user/login", (req, res) => {
-  res.send("login page");
+app.get("/getUserData", (req, res) => {
+  try {
+    throw new Error("Random error");
+    res.send("user data");
+  } catch (errr) {
+    res.status(500).send("Some error contact support team");
+  }
 });
 
-// Route and many route handlers
-app.use("/user/getData",userAuth, (req, res) => {
-  console.log("Route handler 1!!");
-  res.send("User data");
-});
-
-// app.use("/admin",adminAuth);
-
-app.use("/admin/getAllData",adminAuth,(req,res)=>{
-    res.send("All data is send");
-})
-
-app.use("/admin/deleteUser",adminAuth,(req,res)=>{
-    res.send("Deleted user");
-})
-
-app.get("/", (req, res) => {
-  res.send("Home page");
+app.get("/", (err, req, res, next) => {
+  if (err) {
+    res.status(500).send("Something went wrong");
+  }
 });
 
 app.listen(3000, () => {
