@@ -42,3 +42,13 @@
   - difference between json and javascript object
   - Add the express.json() middleware 
   - make /signup api dynamic to receive data from the end user.
+  - User.findOne will it always return first document? any other ways to retrive other documents in some random order
+  - build an api to get a user
+  - build another api to get all the suers from the DB
+  - API - get user by id
+  - create a delete user api
+  - difference between patch and put
+  - create an api to update user
+  - explore mongoose documentation (Model)
+  - create an api which updates user by user email
+  - explore Model.findOneAndUpdate and it options param.
