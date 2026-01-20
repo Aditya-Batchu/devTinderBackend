@@ -29,7 +29,7 @@
   - Write dummy middlewares for admin,user(except for login)
   - Error handling using app.use
 
-# Episode 07
+# Episode 06
   - Create a free cluster in mongodb official website (Mongo Atlas)
   - install mongoose library
   - connect application to the database "Connection-url"/devTinder
@@ -37,3 +37,8 @@
   - create a user schema & user model
   - create a POST /signup api to add data to database
   - push some documents from postman 
+
+# Episode 07
+  - difference between json and javascript object
+  - Add the express.json() middleware 
+  - make /signup api dynamic to receive data from the end user.

@@ -4,15 +4,11 @@ const User = require("./models/user");
 const mongoose = require("mongoose");
 const app = express();
 
+app.use(express.json());
+
 app.post("/signup", async (req, res) => {
-  const user = new User({
-    firstName: "Teja",
-    lastName: "Batchu",
-    age: 20,
-    gender: "Male",
-    emailId: "aditya1@gmail.com",
-    password: "Qwert@123",
-  });
+  // Creating a new instance of user model
+  const user = new User(req.body);
   console.log(user._id instanceof mongoose.Types.ObjectId);
   try {
     await user.save();
