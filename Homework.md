@@ -52,3 +52,12 @@
   - explore mongoose documentation (Model)
   - create an api which updates user by user email
   - explore Model.findOneAndUpdate and it options param.
+
+# Episode 08
+  - Explore the schemaTypes from the documentation
+  - add required,unique,lowercase,min,minLength,trim
+  - Add default
+  - create a custom validate function for gender
+  - Improve the DB schema - PUT all appropriate validations in the schema
+  - add timestamps to the schema
+  

@@ -108,6 +108,24 @@
 # Express json 
   
 
+# Schema,Model,object
+  - A schema defines the structure & rules for documents.
+  - A model is a wrapper around a schema used to interact with a collection.
+  - An object is a single data instance in memory.
+  * Schema → Model → Object → Document → Collection
+
+  "Schema: Blueprint defining document structure
+  Model: Interface to interact with a collection
+  Object: Runtime instance in memory
+  Document: Stored record in MongoDB
+  Collection: Group of related documents"
+
+  - Mongoose also adds an _id property to subdocuments. You can disable the _id property on your subdocuments as follows. Mongoose does allow saving subdocuments without an _id property.
+  - Instance of models are documents
+  - A SchemaType is a configuration object for an individual property
+  - 
+
+
 # Resources
  - mongoose documentation
  - libuv documentation
