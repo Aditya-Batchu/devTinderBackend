@@ -61,3 +61,9 @@
   - Improve the DB schema - PUT all appropriate validations in the schema
   - add timestamps to the schema
   
+# Episode 09
+ - Validate data in SignUp API
+ - Install bcrypt package
+ - Create passwordhash using bcrypt.hash & save the users with the encrypted password.
+ - Create login API
+ - compare password
