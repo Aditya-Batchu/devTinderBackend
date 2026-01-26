@@ -6,8 +6,12 @@ const app = express();
 const { validateSignUpUser } = require("./utils/validation");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+const { userAuth } = require("./middlewares/auth");
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Adding new user to DB
 app.post("/signup", async (req, res) => {
@@ -53,6 +57,12 @@ app.post("/login", async (req, res) => {
     }
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (passwordMatch) {
+      // Set cookie
+      const token = jwt.sign({ emailId: user.emailId }, "password", {
+        expiresIn: '10d',
+      });
+
+      res.cookie("token", token);
       res.send("User login Succesfull");
     } else {
       throw new Error("Invalid Credentials");
@@ -62,84 +72,21 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Update user by userId
-app.patch("/user/:userId", async (req, res) => {
-  const userId = req.params.userId;
-  const data = req.body;
-
+// Get User profile
+app.get("/profile", userAuth, async (req, res) => {
   try {
-    const ALLOWED_UPDATES = [
-      "age",
-      "gender",
-      "password",
-      "photoURL",
-      "about",
-      "skills",
-    ];
-    const isAllowed = Object.keys(data).every((k) =>
-      ALLOWED_UPDATES.includes(k),
-    );
-    if (!isAllowed) {
-      throw new Error("Update not allowed");
-    }
-    const user = await User.findByIdAndUpdate(userId, data, {
-      returnDocument: "before",
-      runValidators: true,
-    });
-    res.send("User updated succesfully");
+    const user = req.user;
+    res.send(user);
   } catch (err) {
-    res.status(400).send("Update failed: " + err.message);
+    res.status(400).send("ERROR: " + err.message);
   }
 });
 
-// Delete a user from DB
-app.delete("/user", async (req, res) => {
-  const userId = req.body.userId;
-  try {
-    const user = await User.findByIdAndDelete(userId);
-    res.send("user deleted succesfully");
-  } catch (err) {
-    res.status(400).send("Something went wrong");
-  }
-});
+app.post("/sendConnectionRequest", userAuth, (req, res) => {
+  const user = req.user;
 
-// Find user by _id
-app.get("/userid", async (req, res) => {
-  try {
-    const user = await User.findById("696ca2029b00593908c5bf45");
-    if (!user) res.send("User not found");
-    else {
-      res.send(user);
-    }
-  } catch (err) {
-    res.send("Something went wrong");
-  }
-});
-
-// Get user by email/key
-app.get("/user", async (req, res) => {
-  const userEmailId = req.body.emailId;
-
-  try {
-    const users = await User.findOne({ emailId: userEmailId });
-    if (users.length === 0) {
-      res.status(404).send("User not found");
-    } else {
-      res.send(users);
-    }
-  } catch (err) {
-    res.status(400).send("Something went wrong");
-  }
-});
-
-// Get all users
-app.get("/feed", async (req, res) => {
-  try {
-    const users = await User.find({});
-    res.send(users);
-  } catch (err) {
-    res.send("Something went wrong", err);
-  }
+  console.log(user.lastName + " Sending connection request");
+  res.send(user.lastName + " sent a connection request");
 });
 
 connectDB()

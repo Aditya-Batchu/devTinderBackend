@@ -67,3 +67,14 @@
  - Create passwordhash using bcrypt.hash & save the users with the encrypted password.
  - Create login API
  - compare password
+
+# Episode 10
+ - install cookieParser
+ - send a dummy cookie to the user
+ - create GET /profile and check if you get the cookie back
+ - install jsonwebtoken
+ - In login API,after email and password check create a JWT Token and send back to the user inside cookies
+ - read cookies inside profile api and find out the loggind user.
+ - userAuth middleware
+ - create a sendConnectionRequest and use userAuth middleware.
+ - set the expire of the jwt token 
