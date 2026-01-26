@@ -1,6 +1,8 @@
+const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
   {
@@ -49,7 +51,7 @@ const userSchema = new Schema(
     },
     skills: {
       type: [String],
-      default: ["react","javascript"]
+      default: ["react", "javascript"],
     },
   },
   {
@@ -64,6 +66,23 @@ userSchema.methods.findSimilarFirstNames = function () {
 
 userSchema.methods.findSimilarLastNames = function () {
   return mongoose.model("User").find({ lastName: this.lastName }).exec();
+};
+
+userSchema.methods.getJWT = function () {
+  const user = this;
+  const token = jwt.sign({ emailId: user.emailId }, "password", {
+    expiresIn: "7d",
+  });
+  return token;
+};
+
+userSchema.methods.validatePassword = async function (passwordInput) {
+  const user = this;
+  const passwordHash = user.password;
+
+  const isPasswordValid = await bcrypt.compare(passwordInput, passwordHash);
+
+  return isPasswordValid;
 };
 
 const User = mongoose.model("User", userSchema);

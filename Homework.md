@@ -78,3 +78,5 @@
  - userAuth middleware
  - create a sendConnectionRequest and use userAuth middleware.
  - set the expire of the jwt token 
+ - create userSchema method to getJWT()
+ - create userSchema method to validatePassword(passwordInput)
