@@ -109,3 +109,7 @@
 
 ## Episode 13
 - Write code with proper validations. /request/review/:status/:requestId
+- Thought process GET - POST
+- Read about ref and populate
+- Create GET /user/requests/received
+- Create GET /user/connections
