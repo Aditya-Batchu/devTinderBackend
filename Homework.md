@@ -105,5 +105,7 @@
 - Read more about indexex in mongodb
 - Why do we need index in DB?
 - What is the advantage and disadvantage of creating index?
+- Always think about corner cases
 
-
+## Episode 13
+- Write code with proper validations. /request/review/:status/:requestId
